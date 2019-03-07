@@ -1,5 +1,5 @@
 # Removes old build files, builds new ones and uploads them to pypi
-all:	test fix_number clean build upload
+all:	test fix_number clean build upload git
 
 test:
 	python .test.py
@@ -15,3 +15,7 @@ build:
 
 upload:
 	python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/* -p unsave_pw_saved_in_plaintext_CdR2amJDlY -u lukaselflein
+
+git:
+	git add .
+	git commit
