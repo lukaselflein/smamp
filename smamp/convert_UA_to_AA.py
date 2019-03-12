@@ -18,9 +18,7 @@ from matscipy.neighbours import neighbour_list
 from parmed import gromacs
 
 def insertHbyList(ase_struct, pmd_top, implicitHbondingPartners, bond_length=1.0, logfile=None):
-    """
-    Inserts explicit hydrogen atoms into ASE structure.
-    """ 
+    """Inserts explicit hydrogen atoms into ASE structure.""" 
     # make copies of passed structures as not to alter originals:
     new_pmd_top = pmd_top.copy(pmd.Structure)
     new_ase_struct = ase_struct.copy()
@@ -124,9 +122,7 @@ def insertHbyList(ase_struct, pmd_top, implicitHbondingPartners, bond_length=1.0
     return new_ase_struct, new_pmd_top
 
 def read_input_files(input_dir='../0_initial_structure'):
-    """
-    Search for and read input files (with implicit H-atoms).
-    """
+    """Search for and read input files (with implicit H-atoms)."""
     ase_struct, pmd_top = None, None
 
     files = os.listdir(input_dir)
@@ -147,9 +143,7 @@ def read_input_files(input_dir='../0_initial_structure'):
 
 
 def main():
-    """
-    Execute everything.
-    """
+    """Execute everything."""
 
     # Read the united-atoms files extracted from the MD-simulation trajectory
     # throws some warnings on angle types, does not matter for bonding info
