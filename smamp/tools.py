@@ -19,8 +19,7 @@ class cd:
         os.chdir(self.savedPath)
 
 def check_existence(path, neccessary_files, verbose=True):
-	"""
-	Check if all neccessary files exist in path, print warning for missing files.
+	"""Check if all neccessary files exist in path, print warning for missing files.
 
 	Arguments:
 	path: string, the path to search
@@ -43,3 +42,50 @@ def check_existence(path, neccessary_files, verbose=True):
 				return warning
 	return None
 
+
+def find(path, folder_keyword, file_keyword, nr_occ=1, exclude_kw=['template', 'exclude']):
+	"""Search folderstructure for files, return paths containing them.
+
+	Arguments:
+	path: string, the path to search
+	folder_keyword: strings of the subfolders where the files are supposed to be located
+	file_keyword: parts of the filename to be located
+	nr_occ: how often the file keyword is supposed to occur in the lowererst folder
+	exclude_kw: list of keywords where search should be skipped
+
+	Returns:
+	List of strings, a collection of all matching paths
+
+	Example:
+	crawl(path='./', folder_keyword='dft', file_keyword='rho', nr_occ=1)
+	['./600_ps_snapshot/2_dft_calculations/rho.cube', 
+	 './600_ps_snapshot/2_dft_calculations/rho.cube', 
+	 ...]
+	"""
+	paths = []
+	# Crawl the directory structure
+	for subdir, dirs, files in sorted(os.walk(path)):
+
+		# Exclude template folders from search
+		if any([keyword in subdir for keyword in exclude_kw]):
+			continue
+
+		# Select the folders with the required keyword in them
+		if folder_keyword in subdir:
+
+			# Check if at least one desired file exists
+			if sum([file_keyword in f for f in files]) < 1:
+				print(os.getcwd())
+				raise RuntimeError('No {} file found.'.format(file_keyword))
+
+			# No more than one file must exists for uniqueness
+			if sum([file_keyword in f for f in files]) > nr_occ:
+				print(os.getcwd())
+				err = 'Multiple files containing {} found.'.format(file_keyword)
+				raise RuntimeError(err)
+						
+			# If no error was raised, we can use the file we found:
+			for f in files:
+				if file_keyword in f:
+					paths += [os.path.join(subdir, f)]
+	return paths
