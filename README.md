@@ -1,10 +1,10 @@
-# Tools for automated charge optimization for Molecular Dynamics Simulation
+# Tools for automated charge optimization
 
 ### Goal
 SMAMP (synthetic mimics of antimicrobial peptides) can be used for antimicrobial coating in medical applications.
 To understand a class of SMAMP, we simulate them via Molecular Dynamics (MD).
-An essential component of MD are point-charges.
-These are not available for the SMAMP molecules of interest, so we have to determine them ourselves.
+An MD models atom as point-charges, so these charges are an essential component of MD simulations.
+These charges are not available for the SMAMP molecules of interest, so we have to determine them ourselves.
 
 Multiple methods to determine point charges exists, e.g., Bader Charge Analysis, HORTON-style cost-function fitting and more.
 Also, subvariants of these methods are of interest: diverse constraints, different algorithms and convergence parameters.
