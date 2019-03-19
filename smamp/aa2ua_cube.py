@@ -1,5 +1,5 @@
 #!/usr/bin/env python   
-""" Maps point charges obtained by GPAW and HORTON on the original GROMACS topology.
+""" Map point charges obtained by GPAW and HORTON on the original GROMACS topology.
 Copyright 2019 Simulation Lab
 University of Freiburg
 Author: Johannes Hoermann <johannes.hoermann@imtek.uni-freiburg.de>
