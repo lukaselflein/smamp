@@ -12,4 +12,4 @@ Also, subvariants of these methods are of interest: diverse constraints, differe
 
 ### Content
 This package provides tools to make the charge optimization process easier.
-They are used in a [seperate workflow management repo](https://github.com/lukaselflein/sarah_folderstructure).
+They are used in a [seperate workflow management repo](https://github.com/lukaselflein/charge_optimization_folderstructure).
