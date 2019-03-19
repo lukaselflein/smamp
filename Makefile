@@ -18,5 +18,5 @@ upload:
 
 git:
 	git add .
-	git commit
+	git commit -m 'auto update'
 	git push
