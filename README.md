@@ -12,7 +12,7 @@ Also, subvariants of these methods are of interest: diverse constraints, differe
 ### Overview
 * This package provides tools to make the charge optimization process easier.
 * The documentation is available on [GitHub Pages](https://lukaselflein.github.io/smamp/).
-* This package is used in a [workflow management project](https://github.com/lukaselflein/charge_optimization_folderstructure).
+* The smamp package is used in a [workflow management project](https://github.com/lukaselflein/charge_optimization_folderstructure).
 
 ### Content
 * `smamp`: Code snippets for the charge optimization workflow
