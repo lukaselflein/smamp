@@ -46,7 +46,7 @@ def extract(snapshot_path='snapshot.pdb', top_path='example.top', bader_path='AC
 	terminal_names = np.unique(nra[1])
 	for term in terminal_names:
 		residue = np.where(nra[1] == str(term))
-		print(residue)
+		# print(residue)
 		nra_for_one_residue = nra[:,residue[0]]
 
 		# find all carbon atoms and the belonging H atoms
