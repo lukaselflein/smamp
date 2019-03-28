@@ -22,6 +22,7 @@ upload:
 	python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/* -p unsave_pw_saved_in_plaintext_CdR2amJDlY -u lukaselflein
 
 git:
+	git pull
 	git add .
 	git commit -m 'auto update'
 	git push
