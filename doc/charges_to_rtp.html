@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.5.3" />
+<title>smamp.charges_to_rtp API documentation</title>
+<meta name="description" content="Transfer Charges from CSV table to .rft file
+Copyright 2019 Simulation Lab
+University of Freiburg
+Author: Lukas Elflein &lt;elfleinl@cs.uni-freiburg.de&gt;" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.name small{font-weight:normal}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase;cursor:pointer}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title"><code>smamp.charges_to_rtp</code> module</h1>
+</header>
+<section id="section-intro">
+<dl>
+<dt>Transfer Charges from CSV table to .rft file</dt>
+<dt>Copyright 2019 Simulation Lab</dt>
+<dt>University of Freiburg</dt>
+<dt><strong><code>Author</code></strong> :&ensp;<code>Lukas</code> <code>Elflein</code> <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#108;&#102;&#108;&#101;&#105;&#110;&#108;&#64;&#99;&#115;&#46;&#117;&#110;&#105;&#45;&#102;&#114;&#101;&#105;&#98;&#117;&#114;&#103;&#46;&#100;&#101;">&#101;&#108;&#102;&#108;&#101;&#105;&#110;&#108;&#64;&#99;&#115;&#46;&#117;&#110;&#105;&#45;&#102;&#114;&#101;&#105;&#98;&#117;&#114;&#103;&#46;&#100;&#101;</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">&#34;&#34;&#34; Transfer Charges from CSV table to .rft file
+Copyright 2019 Simulation Lab
+University of Freiburg
+Author: Lukas Elflein &lt;elfleinl@cs.uni-freiburg.de&gt;
+&#34;&#34;&#34;
+
+import pandas as pd
+import argparse
+import shutil
+
+
+def import_charges(csv_path):
+        &#34;&#34;&#34;
+        Read and filter the best-fit charges.
+
+        Args:
+        csv_path: path to the charge table
+        
+        Return:
+        charges: pandas DataFrame with atom names, residue names, charges
+        &#34;&#34;&#34;
+        charges = pd.read_csv(csv_path)
+
+        # select atom names, the residue and q column
+        charges = charges[[&#39;atom&#39;, &#39;residue&#39;, &#39;q&#39;]]
+        print(&#39;Charge table sucessfully imported.&#39;)
+
+        return charges
+
+def parse_rft(rtp_path, charges=None):
+        &#34;&#34;&#34;
+        Substitute the fitted charges for the original charges in the RTF file.
+
+        Args:
+        rtp_path: A string containing the original GROMACS topology file path
+        charges: A pandas DataFrame containing the best fit charges
+
+        Returns:
+        fitted_rtp_text: The original topoly file, but with updated charges
+        &#34;&#34;&#34;
+
+        with open(rtp_path, &#39;r&#39;) as rtp_file:
+                print(&#39;Successfully loaded topolgy file {}&#39;.format(rtp_path))
+                rtp_text = rtp_file.readlines()
+
+                # save all possible atom names
+                atom_names = charges.atom.unique()
+                # and residuum names
+                residuum_names = charges.residue.unique()
+                
+                # We will append all modified lines to sub_text
+                sub_text = &#39;&#39;
+                
+                # Keep track of how often we substituted for debugging
+                nr_substitutions = 0
+
+                current_residuum = None         
+                for line in rtp_text:
+                        # Atom names are only unique inside one residuum
+                        # Thus, specify which res we are currently in
+                        for residuum in residuum_names:
+                                if residuum in line:
+                                        current_residuum = residuum
+                                        break
+                        # Now, we can look up the atom name in the charge table.
+                        # First, select the lines with exactly one atom name
+                        for atom_name in atom_names:
+                                # Select lines with at least one atom name
+                                if atom_name in line[0:7]:
+                                        second_entry = line[8:18].replace(&#39;+&#39;, &#39;&#39;)
+                                        second_entry = second_entry.replace(&#39;-&#39;, &#39;&#39;).strip()
+                                        # Select lines with no atom name in second column
+                                        if not second_entry in atom_names:
+                                                # Now we can substitute the charge with the fitted one
+                                                line = substitute(line, charges, current_residuum)
+                                                nr_substitutions += 1
+                                                break
+
+                        # We substituted the charge, if applicable.
+                        # Now we can append the line to the text file
+                        sub_text += line
+
+        # Make sure that all substitutions were executed
+        assert len(charges.index) == nr_substitutions
+        print(&#39;{} of {} charges substituted.&#39;.format(nr_substitutions, len(charges.index)))
+
+        return sub_text
+
+def substitute(line, charges, current_residuum):
+        &#34;&#34;&#34;
+        Look up the charge for an atom, and write into a string.
+
+        Args:
+        line: String containing an atom name, residuum name, and original charge.
+        charges: DataFrame containing atom name, residuum names, new charges.
+
+        Returns:
+        line: the original line, with the charge updated from the `charges` table.
+        &#34;&#34;&#34;
+        current_atom = line[0:7].strip()
+
+        # look up the current atom name in the residuum we are currently in
+        mask = (charges.atom == current_atom) &amp; (charges.residue == current_residuum)
+        # Exract the charge q
+        new_charge = charges[mask].q.values[0]
+        charge_string = &#39;{: 1.6f}&#39;.format(new_charge) + &#39;  &#39;
+        modified_line = line[:24] + charge_string + line[34:]
+
+        return modified_line
+
+def export_rft(text, out_path):
+        &#34;&#34;&#34;
+        Write the modified text to a file.
+        &#34;&#34;&#34;
+        with open(out_path, &#39;w&#39;) as outfile:
+                outfile.write(text)
+        print(&#39;Modified topoly file written to {}&#39;.format(out_path))
+
+def cmd_parser():
+        parser = argparse.ArgumentParser(prog=&#39;&#39;,
+                                         description=&#39;Transfer charges from a csv file to an .rtp file&#39;)
+        parser.add_argument(&#39;-rtp&#39;,
+        help=&#39;The location of the GROMACS topology file (.rtp)&#39;,
+        default=&#39;./n7nh2.rtp&#39;, metavar=&#39;./n7nh2.rtp&#39;)
+
+        parser.add_argument(&#39;-csv&#39;, metavar=&#39;./charges.csv&#39;,
+        help=&#39;The location of the atomname-charge table, in the .csv format.&#39;, 
+        default=&#39;./average_cost_function_check/fitted_points_charges.csv&#39;)
+        
+        parser.add_argument(&#39;-out&#39;, metavar=&#39;./modified.rtp&#39;,
+        help=&#39;The location where the modified rtp file should be saved.&#39;,
+        default=&#39;modified.rtp&#39;)
+
+        args = parser.parse_args()
+
+        return args.rtp, args.csv, args.out
+        
+        
+def main():
+        &#34;&#34;&#34;
+        Run the script.
+        &#34;&#34;&#34;
+        rtp_path, csv_path, out_path = cmd_parser()
+        charges = import_charges(csv_path)
+        sub_text = parse_rft(rtp_path=rtp_path, charges=charges) 
+        export_rft(text=sub_text, out_path=out_path)
+        print(&#39;Done.&#39;)
+
+if __name__ == &#39;__main__&#39;:
+        main()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="smamp.charges_to_rtp.cmd_parser"><code class="name flex">
+<span>def <span class="ident">cmd_parser</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def cmd_parser():
+        parser = argparse.ArgumentParser(prog=&#39;&#39;,
+                                         description=&#39;Transfer charges from a csv file to an .rtp file&#39;)
+        parser.add_argument(&#39;-rtp&#39;,
+        help=&#39;The location of the GROMACS topology file (.rtp)&#39;,
+        default=&#39;./n7nh2.rtp&#39;, metavar=&#39;./n7nh2.rtp&#39;)
+
+        parser.add_argument(&#39;-csv&#39;, metavar=&#39;./charges.csv&#39;,
+        help=&#39;The location of the atomname-charge table, in the .csv format.&#39;, 
+        default=&#39;./average_cost_function_check/fitted_points_charges.csv&#39;)
+        
+        parser.add_argument(&#39;-out&#39;, metavar=&#39;./modified.rtp&#39;,
+        help=&#39;The location where the modified rtp file should be saved.&#39;,
+        default=&#39;modified.rtp&#39;)
+
+        args = parser.parse_args()
+
+        return args.rtp, args.csv, args.out</code></pre>
+</details>
+</dd>
+<dt id="smamp.charges_to_rtp.export_rft"><code class="name flex">
+<span>def <span class="ident">export_rft</span></span>(<span>text, out_path)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Write the modified text to a file.</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def export_rft(text, out_path):
+        &#34;&#34;&#34;
+        Write the modified text to a file.
+        &#34;&#34;&#34;
+        with open(out_path, &#39;w&#39;) as outfile:
+                outfile.write(text)
+        print(&#39;Modified topoly file written to {}&#39;.format(out_path))</code></pre>
+</details>
+</dd>
+<dt id="smamp.charges_to_rtp.import_charges"><code class="name flex">
+<span>def <span class="ident">import_charges</span></span>(<span>csv_path)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Read and filter the best-fit charges.</p>
+<dl>
+<dt>Args:</dt>
+<dt><strong><code>csv_path</code></strong> :&ensp;<code>path</code> <code>to</code> <code>the</code> <code>charge</code> <code>table</code></dt>
+<dd>&nbsp;</dd>
+<dt>Return:</dt>
+<dt><strong><code>charges</code></strong> :&ensp;<code>pandas</code> <code>DataFrame</code> <code>with</code> <code>atom</code> <code>names</code>, <code>residue</code> <code>names</code>, <code>charges</code></dt>
+<dd>&nbsp;</dd>
+</dl></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def import_charges(csv_path):
+        &#34;&#34;&#34;
+        Read and filter the best-fit charges.
+
+        Args:
+        csv_path: path to the charge table
+        
+        Return:
+        charges: pandas DataFrame with atom names, residue names, charges
+        &#34;&#34;&#34;
+        charges = pd.read_csv(csv_path)
+
+        # select atom names, the residue and q column
+        charges = charges[[&#39;atom&#39;, &#39;residue&#39;, &#39;q&#39;]]
+        print(&#39;Charge table sucessfully imported.&#39;)
+
+        return charges</code></pre>
+</details>
+</dd>
+<dt id="smamp.charges_to_rtp.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Run the script.</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def main():
+        &#34;&#34;&#34;
+        Run the script.
+        &#34;&#34;&#34;
+        rtp_path, csv_path, out_path = cmd_parser()
+        charges = import_charges(csv_path)
+        sub_text = parse_rft(rtp_path=rtp_path, charges=charges) 
+        export_rft(text=sub_text, out_path=out_path)
+        print(&#39;Done.&#39;)</code></pre>
+</details>
+</dd>
+<dt id="smamp.charges_to_rtp.parse_rft"><code class="name flex">
+<span>def <span class="ident">parse_rft</span></span>(<span>rtp_path, charges=None)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Substitute the fitted charges for the original charges in the RTF file.</p>
+<dl>
+<dt>Args:</dt>
+<dt><strong><code>rtp_path</code></strong> :&ensp;<code>A</code> <code>string</code> <code>containing</code> <code>the</code> <code>original</code> <code>GROMACS</code> <code>topology</code> <code>file</code> <code>path</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>charges</code></strong> :&ensp;<code>A</code> <code>pandas</code> <code>DataFrame</code> <code>containing</code> <code>the</code> <code>best</code> <code>fit</code> <code>charges</code></dt>
+<dd>&nbsp;</dd>
+<dt>Returns:</dt>
+<dt><strong><code>fitted_rtp_text</code></strong> :&ensp;<code>The</code> <code>original</code> <code>topoly</code> <code>file</code>, <code>but</code> <code>with</code> <code>updated</code> <code>charges</code></dt>
+<dd>&nbsp;</dd>
+</dl></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def parse_rft(rtp_path, charges=None):
+        &#34;&#34;&#34;
+        Substitute the fitted charges for the original charges in the RTF file.
+
+        Args:
+        rtp_path: A string containing the original GROMACS topology file path
+        charges: A pandas DataFrame containing the best fit charges
+
+        Returns:
+        fitted_rtp_text: The original topoly file, but with updated charges
+        &#34;&#34;&#34;
+
+        with open(rtp_path, &#39;r&#39;) as rtp_file:
+                print(&#39;Successfully loaded topolgy file {}&#39;.format(rtp_path))
+                rtp_text = rtp_file.readlines()
+
+                # save all possible atom names
+                atom_names = charges.atom.unique()
+                # and residuum names
+                residuum_names = charges.residue.unique()
+                
+                # We will append all modified lines to sub_text
+                sub_text = &#39;&#39;
+                
+                # Keep track of how often we substituted for debugging
+                nr_substitutions = 0
+
+                current_residuum = None         
+                for line in rtp_text:
+                        # Atom names are only unique inside one residuum
+                        # Thus, specify which res we are currently in
+                        for residuum in residuum_names:
+                                if residuum in line:
+                                        current_residuum = residuum
+                                        break
+                        # Now, we can look up the atom name in the charge table.
+                        # First, select the lines with exactly one atom name
+                        for atom_name in atom_names:
+                                # Select lines with at least one atom name
+                                if atom_name in line[0:7]:
+                                        second_entry = line[8:18].replace(&#39;+&#39;, &#39;&#39;)
+                                        second_entry = second_entry.replace(&#39;-&#39;, &#39;&#39;).strip()
+                                        # Select lines with no atom name in second column
+                                        if not second_entry in atom_names:
+                                                # Now we can substitute the charge with the fitted one
+                                                line = substitute(line, charges, current_residuum)
+                                                nr_substitutions += 1
+                                                break
+
+                        # We substituted the charge, if applicable.
+                        # Now we can append the line to the text file
+                        sub_text += line
+
+        # Make sure that all substitutions were executed
+        assert len(charges.index) == nr_substitutions
+        print(&#39;{} of {} charges substituted.&#39;.format(nr_substitutions, len(charges.index)))
+
+        return sub_text</code></pre>
+</details>
+</dd>
+<dt id="smamp.charges_to_rtp.substitute"><code class="name flex">
+<span>def <span class="ident">substitute</span></span>(<span>line, charges, current_residuum)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Look up the charge for an atom, and write into a string.</p>
+<p>Args:
+line: String containing an atom name, residuum name, and original charge.
+charges: DataFrame containing atom name, residuum names, new charges.</p>
+<p>Returns:
+line: the original line, with the charge updated from the <code>charges</code> table.</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def substitute(line, charges, current_residuum):
+        &#34;&#34;&#34;
+        Look up the charge for an atom, and write into a string.
+
+        Args:
+        line: String containing an atom name, residuum name, and original charge.
+        charges: DataFrame containing atom name, residuum names, new charges.
+
+        Returns:
+        line: the original line, with the charge updated from the `charges` table.
+        &#34;&#34;&#34;
+        current_atom = line[0:7].strip()
+
+        # look up the current atom name in the residuum we are currently in
+        mask = (charges.atom == current_atom) &amp; (charges.residue == current_residuum)
+        # Exract the charge q
+        new_charge = charges[mask].q.values[0]
+        charge_string = &#39;{: 1.6f}&#39;.format(new_charge) + &#39;  &#39;
+        modified_line = line[:24] + charge_string + line[34:]
+
+        return modified_line</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="smamp" href="index.html">smamp</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="smamp.charges_to_rtp.cmd_parser" href="#smamp.charges_to_rtp.cmd_parser">cmd_parser</a></code></li>
+<li><code><a title="smamp.charges_to_rtp.export_rft" href="#smamp.charges_to_rtp.export_rft">export_rft</a></code></li>
+<li><code><a title="smamp.charges_to_rtp.import_charges" href="#smamp.charges_to_rtp.import_charges">import_charges</a></code></li>
+<li><code><a title="smamp.charges_to_rtp.main" href="#smamp.charges_to_rtp.main">main</a></code></li>
+<li><code><a title="smamp.charges_to_rtp.parse_rft" href="#smamp.charges_to_rtp.parse_rft">parse_rft</a></code></li>
+<li><code><a title="smamp.charges_to_rtp.substitute" href="#smamp.charges_to_rtp.substitute">substitute</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.5.3</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
