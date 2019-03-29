@@ -18,6 +18,8 @@ from matscipy.neighbours import neighbour_list
 from parmed import gromacs
 from smamp.insertHbyList import insertHbyList
 from smamp.tools import find
+from smamp.tools import read_atom_numbers
+
 
 
 def read_input_files():
@@ -39,8 +41,12 @@ def read_input_files():
     return ase_struct, pmd_struct, pmd_top
 
 
-def main(implicitHbondingPartners={'CD4':1,'CD3':1,'CA2':2,'CA3':2,'CB2':2,'CB3':2}):
+def main(implicitHbondingPartners=None):
     """Execute everything."""
+
+    # Read the hydrogen-number table by default
+    if implicitHbondingPartners is None:
+        implicitHbondingPartners = read_atom_numbers()
 
     # Read the united-atoms files extracted from the MD-simulation trajectory
     # throws some warnings on angle types, does not matter for bonding info
