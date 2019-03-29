@@ -17,7 +17,7 @@ from smamp.insertHbyList import insertHbyList
 import warnings
 import argparse
 
-def main():
+def main(implicitHbondingPartners={'CD4':1,'CD3':1,'CA2':2,'CA3':2,'CB2':2,'CB3':2}):
     parser = argparse.ArgumentParser(\
         description='Converts an all-atom cube file into united-atom'
             ' representation based on certain replacement rules')
@@ -44,7 +44,7 @@ def main():
 
     print('Using replacement rules "{}"...'.format(args.insertion_rules))
     #implicitHbondingPartners = ast.literal_eval(args.insertion_rules)
-    implicitHbondingPartners={'CD4':1,'CD3':1,'CA2':2,'CA3':2,'CB2':2,'CB3':2}
+    
     aa2ua_cube(args.infile_pdb, args.infile_top, args.infile_cube, 
                args.outfile_cube,implicitHbondingPartners=implicitHbondingPartners)
 
