@@ -50,13 +50,7 @@ def main():
 
 
 def aa2ua_cube(infile_pdb, infile_top, infile_cube,
-               outfile_cube,implicitHbondingPartners=
-               {'CD4':1,'CD3':1,'CA2':2,'CA3':2,'CB2':2,'CB3':2}):
-    #infile_pdb = args.infile_pdb
-    #infile_top = args.infile_top
-    #infile_cube  = args.infile_cube
-
-    #outfile_cube = args.outfile_cube
+               outfile_cube, implicitHbondingPartners):
 
     ase_struct=ase.io.read(infile_pdb)
     pmd_struct = pmd.load_file(infile_pdb)
