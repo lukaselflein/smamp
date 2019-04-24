@@ -44,19 +44,13 @@ def main():
 
     print('Using replacement rules "{}"...'.format(args.insertion_rules))
     #implicitHbondingPartners = ast.literal_eval(args.insertion_rules)
-    implicitHbondingPartners={'CD4':1,'CD3':1,'CA2':2,'CA3':2,'CB2':2,'CB3':2}
+    
     aa2ua_cube(args.infile_pdb, args.infile_top, args.infile_cube, 
                args.outfile_cube,implicitHbondingPartners=implicitHbondingPartners)
 
 
 def aa2ua_cube(infile_pdb, infile_top, infile_cube,
-               outfile_cube,implicitHbondingPartners=
-               {'CD4':1,'CD3':1,'CA2':2,'CA3':2,'CB2':2,'CB3':2}):
-    #infile_pdb = args.infile_pdb
-    #infile_top = args.infile_top
-    #infile_cube  = args.infile_cube
-
-    #outfile_cube = args.outfile_cube
+               outfile_cube, implicitHbondingPartners):
 
     ase_struct=ase.io.read(infile_pdb)
     pmd_struct = pmd.load_file(infile_pdb)

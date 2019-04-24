@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(name='smamp',
-      version='1.02',
+      version='1.07',
       description='Self-consistently optimizing smamp charges.',
       packages=['smamp'],
       url='',

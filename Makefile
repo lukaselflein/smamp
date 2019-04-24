@@ -5,6 +5,7 @@ test:
 	python .test.py
 
 docs:
+	rm docs/*html
 	pdocs3 --html smamp
 	mv html/smamp/*.html docs/
 	rm -r html
