@@ -1,18 +1,20 @@
 """ Extract atomic charges from Bader Charge Analysis output.
 Copyright 2019 Simulation Lab
 University of Freiburg
-Author:
+Author: ?
 Modified: Lukas Elflein <elfleinl@cs.uni-freiburg.de>
 """
 
 import ase
 from parmed import gromacs
 import numpy as np
-from smamp.insertHbyList import insertHbyList
 import warnings
 
+from smamp.insertHbyList import insertHbyList
+from smamp.tools import read_atom_numbers
+
 def extract(snapshot_path='snapshot.pdb', top_path='example.top', bader_path='ACF.dat',
-	    out_path='bader_charges.csv'):
+	    out_path='bader_charges.csv', hydrogen_path='hydrogen_per_atom.csv'):
 	""" Execute everything."""
 	# Read the atomic structure
 	ase_struct = ase.io.read(snapshot_path)
@@ -22,21 +24,32 @@ def extract(snapshot_path='snapshot.pdb', top_path='example.top', bader_path='AC
 		warnings.simplefilter("ignore")
 		pmd_top = gromacs.GromacsTopologyFile(top_path, parametrize=False)
 
-	implicitHbondingPartners={'CD4':1,'CD3':1,'CA2':2,'CA3':2,'CB2':2,'CB3':2}
+	# Read number of hydrogen per atom from configuration file table
+	implicitHbondingPartners = read_atom_numbers(path=hydrogen_path)
+
 	new_ase_struct, new_pmd_top, names, residues = insertHbyList(ase_struct, pmd_top, 
 								     implicitHbondingPartners)
+	#atomic_number = new_ase_struct.get_atomic_numbers()
 
-	atomic_number = new_ase_struct.get_atomic_numbers()
 	bader_charges = np.genfromtxt(bader_path,skip_header=2,skip_footer=4,usecols=4)
+	atomic_number = ase_struct.get_atomic_numbers()
+
+	missing_hydrogens = len(bader_charges) - atomic_number.shape[0] 
+	charges = np.ones((missing_hydrogens, ))
+	atomic_number = np.concatenate((atomic_number, charges), axis=0)
 	atomic_charges = atomic_number - bader_charges  # this inverts the sign of the bader charges
 
 	results =[]
-	for i in range(127):
+	for i in range(len(atomic_charges)):
 		results.append((names[i], residues[i], atomic_charges[i],
 				atomic_number[i],bader_charges[i]))
 
 	# find the summed charges of carbon atoms and corresponding H atoms
-	list_of_C_atoms = ['CD3', 'CD4', 'CA2', 'CA3', 'CB2', 'CB3']
+	# print(implicitHbondingPartners)
+	#list_of_C_atoms = ['CD3', 'CD4', 'CA2', 'CA3', 'CB2', 'CB3']
+	#list_of_C_atoms += ['CF2', 'CA4']
+	list_of_C_atoms = list(implicitHbondingPartners.keys())
+
 	atom_res_totq = []  # list of [C-atom, residue, total_charge]
 	nra = np.array([names,residues,atomic_charges])
 
@@ -44,9 +57,11 @@ def extract(snapshot_path='snapshot.pdb', top_path='example.top', bader_path='AC
 	total_charge_results[:,3] = total_charge_results[:,2]
 
 	terminal_names = np.unique(nra[1])
+	terminal_names = np.delete(terminal_names, np.argwhere(terminal_names == 'SOL'))
+	terminal_names = np.delete(terminal_names, np.argwhere(terminal_names == 'CL'))
 	for term in terminal_names:
 		residue = np.where(nra[1] == str(term))
-		# print(residue)
+		print(residue)
 		nra_for_one_residue = nra[:,residue[0]]
 
 		# find all carbon atoms and the belonging H atoms
